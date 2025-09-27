@@ -60,4 +60,17 @@ include_directories(
 
 add_subdirectory(lib/fmt/fmt)
 
+### --- Add this block to make qml/ visible in Qt Creator ---
+file(GLOB_RECURSE QML_FILES CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/qml/*.qml
+    ${CMAKE_CURRENT_SOURCE_DIR}/qml/*.js
+)
+
+# Create a dummy target only for IDE display
+add_custom_target(qml_files ALL SOURCES ${QML_FILES})
+
+# Group them nicely in Qt Creator's tree
+source_group("QML" FILES ${QML_FILES})
+### ---
+
 add_subdirectory(src)

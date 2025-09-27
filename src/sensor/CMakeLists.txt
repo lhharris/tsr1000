@@ -10,7 +10,8 @@ STATIC
     pingsensor.cpp
     protocoldetector.cpp
     sensor.cpp
-    parser.h # for the moc.
+    parser.h
+    tsr1000.cpp # for the moc.
 )
 
 target_link_libraries(

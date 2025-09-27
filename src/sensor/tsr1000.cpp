@@ -37,7 +37,7 @@ Tsr1000::Tsr1000()
 {
     _flasher = new Flasher(nullptr);
 
-    setName("Tsr1000");
+    setName("TSR1000");
     setControlPanel({"qrc:/Tsr1000ControlPanel.qml"});
     setSensorVisualizer({"qrc:/Tsr1000Visualizer.qml"});
     setSensorStatusModel({"qrc:/Tsr1000StatusModel.qml"});
@@ -82,11 +82,12 @@ Tsr1000::Tsr1000()
 
     connect(this, &Tsr1000::deviceRevisionChanged, this, [this] {
         // Wait for firmware information to be available before looking for new versions
-        static bool once = false;
+        //static bool once = false;
+        static bool once = true;  // don't go looking for new firmware right now.
         if (!once) {
             once = true;
             //QString sensorName = _commonVariables.deviceInformation.device_revision == 2 ? "ping2" : "tsr1000";
-            QString sensorName = "tsr1000";
+            QString sensorName = "TSR1000";
             NetworkTool::self()->checkNewFirmware(
                 sensorName, std::bind(&Tsr1000::checkNewFirmwareInGitHubPayload, this, std::placeholders::_1));
         }
@@ -122,7 +123,7 @@ void Tsr1000::loadLastPingConfigurationSettings()
 
     // Load settings for device using device id
     QVariant pingConfigurationVariant
-        = SettingsManager::self()->getMapValue({"Tsr1000", "Tsr1000Configuration", QString(_commonVariables.srcId)});
+        = SettingsManager::self()->getMapValue({"TSR1000", "Tsr1000Configuration", QString(_commonVariables.srcId)});
     if (pingConfigurationVariant.type() != QVariant::Map) {
         qCWarning(PING_PROTOCOL_TSR1000) << "No valid Tsr1000Configuration in settings." << pingConfigurationVariant.type();
         return;
@@ -142,7 +143,7 @@ void Tsr1000::updatePingConfigurationSettings()
         auto& dataStruct = _pingConfiguration[key];
         dataStruct.set(dataStruct.getClassValue());
         SettingsManager::self()->setMapValue(
-            {"Tsr1000", "Tsr1000Configuration", QString(_commonVariables.srcId), key}, dataStruct.value);
+            {"TSR1000", "Tsr1000Configuration", QString(_commonVariables.srcId), key}, dataStruct.value);
     }
 }
 
@@ -488,7 +489,7 @@ void Tsr1000::resetSettings()
 
 void Tsr1000::printSensorInformation() const
 {
-    qCDebug(PING_PROTOCOL_TSR1000) << "Tsr1000 Status:";
+    qCDebug(PING_PROTOCOL_TSR1000) << "TSR1000 Status:";
     qCDebug(PING_PROTOCOL_TSR1000) << "\t- board_voltage:" << _board_voltage;
     qCDebug(PING_PROTOCOL_TSR1000) << "\t- pcb_temperature:" << _pcb_temperature;
     qCDebug(PING_PROTOCOL_TSR1000) << "\t- processor_temperature:" << _processor_temperature;
@@ -513,8 +514,8 @@ void Tsr1000::checkNewFirmwareInGitHubPayload(const QJsonDocument& jsonDocument)
     for (const QJsonValue& filePayload : filesPayload) {
         qCDebug(PING_PROTOCOL_TSR1000) << filePayload["name"].toString();
 
-        // Get version from Ping(\d|)[_|-]V(major).(patch)*.hex where (major).(patch) is <version>
-        static const QRegularExpression versionRegex(QStringLiteral(R"(Ping(\d|)[_|-]V(?<version>\d+\.\d+).*\.hex)"));
+        // Get version from Tsr1000(\d|)[_|-]V(major).(patch)*.hex where (major).(patch) is <version>
+        static const QRegularExpression versionRegex(QStringLiteral(R"(Tsr1000(\d|)[_|-]V(?<version>\d+\.\d+).*\.hex)"));
         auto filePayloadVersion = versionRegex.match(filePayload["name"].toString()).captured("version").toFloat();
         if (filePayloadVersion <= 0) {
             qCWarning(PING_PROTOCOL_TSR1000) << "Invalid version:" << filePayload["name"].toString();

@@ -12,6 +12,7 @@
 #include "settingsmanager.h"
 #include <ping-message-common.h>
 #include <ping-message-ping1d.h>
+#include <ping-message-tsr1000.h>
 #include <ping-message.h>
 
 PING_LOGGING_CATEGORY(PING_PROTOCOL_PROTOCOLDETECTOR, "ping.protocol.protocoldetector")
@@ -43,6 +44,7 @@ ProtocolDetector::ProtocolDetector()
 
     _linkConfigs.append({{LinkType::Udp, {"192.168.2.2", "9090"}, "BlueRov2 Ping1D Port"},
         {LinkType::Udp, {"192.168.2.2", "9092"}, "BlueRov2 Ping360 Port"},
+        {LinkType::Udp, {"192.168.2.2", "9094"}, "BlueRov2 Tsr1000 Port"},
         {LinkType::Udp, {"127.0.0.1", "1234"}, "Development port"}});
 
     // Load user personalized links
@@ -303,6 +305,8 @@ bool ProtocolDetector::checkBuffer(const QByteArray& buffer, LinkConfiguration& 
             PingDeviceType type = static_cast<PingDeviceType>(device_information.device_type());
             if (type == PingDeviceType::PING360) {
                 linkConf.setDeviceType(PingDeviceType::PING360);
+            } else if (type == PingDeviceType::TSR1000) {
+                linkConf.setDeviceType(PingDeviceType::TSR1000);
             } else {
                 linkConf.setDeviceType(PingDeviceType::PING1D);
             }

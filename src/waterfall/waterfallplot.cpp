@@ -258,6 +258,8 @@ void WaterfallPlot::draw(const QVector<double>& points, float confidence, float 
     }
 
     if (smooth()) {
+        if (oldPoints.size() != points.size())
+            oldPoints.resize(points.size());
 #pragma omp for
         for (int i = 0; i < points.length(); i++) {
             oldPoints[i] = points[i] * 0.2 + oldPoints[i] * 0.8;

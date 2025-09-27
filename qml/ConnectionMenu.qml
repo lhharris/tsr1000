@@ -89,6 +89,11 @@ Item {
                         deviceId: PingEnumNamespace.PingDeviceType.PING360
                     }
 
+                    ListElement {
+                        name: "Tsr1000"
+                        deviceId: PingEnumNamespace.PingDeviceType.TSR1000
+                    }
+
                 }
 
             }

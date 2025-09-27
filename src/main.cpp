@@ -21,6 +21,7 @@
 #include "logger.h"
 #include "notificationmanager.h"
 #include "ping.h"
+#include "tsr1000.h"
 #include "ping360.h"
 #include "ping360helperservice.h"
 #include "polarplot.h"
@@ -71,6 +72,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<LinkConfiguration>("LinkConfiguration", 1, 0, "LinkConfiguration");
     qmlRegisterType<Ping>("Ping", 1, 0, "Ping");
     qmlRegisterType<Ping360>("Ping360", 1, 0, "Ping360");
+    qmlRegisterType<Tsr1000>("TSR1000", 1, 0, "Tsr1000");
     qmlRegisterType<PolarPlot>("PolarPlot", 1, 0, "PolarPlot");
     qmlRegisterType<WaterfallPlot>("WaterfallPlot", 1, 0, "WaterfallPlot");
 

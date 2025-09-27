@@ -16,7 +16,7 @@ ColumnLayout {
     PingGroupBox {
         id: pingGroup
 
-        title: "Tsr1000"
+        title: "TSR1000"
         enabled: ping.connected
         Layout.fillWidth: true
 
@@ -159,7 +159,7 @@ ColumnLayout {
                     id: gainCB
 
                     currentIndex: ping.gain_setting ? ping.gain_setting : 0
-                    model: [-4.4, 5.2, 14.8, 22.2, 29.6, 36.4, 43.2]
+                    model: [20, 34, 40, 46]
                     enabled: !autoGainChB.checked
                     Layout.columnSpan: 1
                     onCurrentIndexChanged: {

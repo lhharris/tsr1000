@@ -2,7 +2,7 @@ import QtQml.Models 2.12
 import QtQuick 2.15
 
 Item {
-    property var title: "Tsr1000 specific data:"
+    property var title: "TSR1000 specific data:"
     property var sensor: null
     // It's not possible to use DelegateModel without parent
     property var model

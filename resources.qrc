@@ -33,6 +33,9 @@
         <file alias="PolarGrid.qml">qml/PolarGrid.qml</file>
         <file alias="ValueReadout.qml">qml/ValueReadout.qml</file>
         <file alias="PingTextField.qml">qml/PingTextField.qml</file>
+        <file alias="Tsr1000ControlPanel.qml">qml/Tsr1000ControlPanel.qml</file>
+        <file alias="Tsr1000StatusModel.qml">qml/Tsr1000StatusModel.qml</file>
+        <file alias="Tsr1000Visualizer.qml">qml/Tsr1000Visualizer.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file alias="arrow.svg">qml/icons/arrow.svg</file>
@@ -63,6 +66,7 @@
         <file alias="None.gif">qml/gifs/None.gif</file>
         <file alias="Ping1D.gif">qml/gifs/Ping1D.gif</file>
         <file alias="Ping360.gif">qml/gifs/Ping360.gif</file>
+        <file alias="TSR1000.gif">qml/gifs/TSR1000.gif</file>
     </qresource>
     <qresource prefix="/sounds">
         <file alias="camera-shutter.wav">qml/sounds/camera-shutter.wav</file>

@@ -5,6 +5,7 @@
 #include "logger.h"
 #include "ping.h"
 #include "ping360.h"
+#include "tsr1000.h"
 #include "settingsmanager.h"
 
 PING_LOGGING_CATEGORY(DEVICEMANAGER, "ping.devicemanager");
@@ -100,6 +101,8 @@ void DeviceManager::connectLink(LinkConfiguration* linkConf)
     // this pointer will hold everything for us
     if (linkConf->deviceType() == PingDeviceType::PING1D) {
         _primarySensor.reset(new Ping());
+    } else if (linkConf->deviceType() == PingDeviceType::TSR1000) {
+        _primarySensor.reset(new Tsr1000());
     } else {
         _primarySensor.reset(new Ping360());
     }
