@@ -27,7 +27,9 @@
 
 #include <mavlink_msg_attitude.h>
 
+#if !defined(M_PI)
 #define M_PI ((double) 3.1415927)
+#endif
 
 PING_LOGGING_CATEGORY(PING_PROTOCOL_PING360, "ping.protocol.ping360")
 
