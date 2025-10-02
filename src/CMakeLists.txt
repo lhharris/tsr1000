@@ -54,12 +54,14 @@ add_executable(pingviewer
 )
 
 # Set windows administrator request
-if(WIN32 AND ENABLE_REQUIRE_ADMIN)
-    set_target_properties(
-        pingviewer
-    PROPERTIES
-        LINK_FLAGS "/level='requireAdministrator'"
-    )
+if(MSVC)
+    if(WIN32 AND ENABLE_REQUIRE_ADMIN)
+        set_target_properties(
+            pingviewer
+        PROPERTIES
+            LINK_FLAGS "/level='requireAdministrator'"
+        )
+    endif()
 endif()
 
 # Disable console when running in release mode,

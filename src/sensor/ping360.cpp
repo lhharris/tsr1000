@@ -27,6 +27,8 @@
 
 #include <mavlink_msg_attitude.h>
 
+#define M_PI ((double) 3.1415927)
+
 PING_LOGGING_CATEGORY(PING_PROTOCOL_PING360, "ping.protocol.ping360")
 
 // firmware constants

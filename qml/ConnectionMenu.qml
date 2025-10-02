@@ -171,8 +171,8 @@ Item {
                 ComboBox {
                     id: baudrateBox
 
-                    visible: deviceCB.model.get(deviceCB.currentIndex).deviceId == PingEnumNamespace.PingDeviceType.PING1D
-                    model: [115200, 9600]
+                    visible: (deviceCB.model.get(deviceCB.currentIndex).deviceId == PingEnumNamespace.PingDeviceType.PING1D) || (deviceCB.model.get(deviceCB.currentIndex).deviceId == PingEnumNamespace.PingDeviceType.TSR1000)
+                    model: [460800, 230400, 115200, 9600]
                 }
 
             }
