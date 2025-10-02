@@ -1,7 +1,12 @@
-build
+build*
 deploy/pingviewer.rc
 *.qmlc
 .qmake.stash
+.qtcreator
+*.bkp
 *.pro.user
 html/
 latex/
+CMakeLists.txt.user
+ping_check_device_info.py
+test-deviceinformation.py
